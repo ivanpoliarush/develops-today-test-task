@@ -13,7 +13,7 @@ export const VehicleResultsPage = async ({
 			{error && <Title label="Failed to get data from the server" />}
 			{!error && !vehicles.length && <Title label="No results found" />}
 			{!error && vehicles.length && (
-				<div>
+				<div className="min-w-[50vw]">
 					<Title label="Search result" />
 					<div className="flex flex-wrap max-w-[80%] mx-auto justify-center gap-[12px]">
 						{vehicles.map((vehicle) => (
