@@ -12,6 +12,7 @@ export const Filters = () => {
 		year,
 		loading,
 		yearsList,
+		fetchError,
 		modelsList,
 		setModelId,
 		setYear,
@@ -22,16 +23,28 @@ export const Filters = () => {
 		fetchData();
 	}, []);
 
+	const selectLabel = (() => {
+		if (loading) {
+			return 'Loading...';
+		}
+
+		if (fetchError) {
+			return 'Failed to fetch';
+		}
+
+		return 'Model';
+	})();
+
 	return (
 		<div className="flex h-[100vh] px-[20px] gap-[24px] items-center justify-center flex-col sm:flex-row sm:px-0">
 			<Select
-				disabled={loading}
+				disabled={loading || fetchError}
 				options={modelsList.map((model) => ({
 					label: model.name,
 					value: model.id,
 				}))}
 				selected={modelId}
-				defaultLabel={loading ? 'Loading...' : 'Model'}
+				defaultLabel={selectLabel}
 				onSelect={(value) => setModelId(value as string | null)}
 			/>
 			<Select
@@ -43,7 +56,9 @@ export const Filters = () => {
 				defaultLabel="Year"
 				onSelect={(value) => setYear(value as number | null)}
 			/>
-			<Link href={`/results/${modelId}/${year}`}>
+			<Link
+				className="w-[100%] sm:w-40"
+				href={`/results/${modelId}/${year}`}>
 				<Button label="Next" disabled={!modelId || !year} />
 			</Link>
 		</div>

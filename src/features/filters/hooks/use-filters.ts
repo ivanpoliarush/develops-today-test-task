@@ -6,6 +6,7 @@ import { FiltersState } from '../types/filters-state';
 
 export const useFilters = create<FiltersState>((set) => ({
 	loading: true,
+	fetchError: false,
 	modelId: null,
 	year: null,
 	yearsList: [],
@@ -28,6 +29,7 @@ export const useFilters = create<FiltersState>((set) => ({
 
 			set({ modelsList });
 		} catch (error) {
+			set({ fetchError: true });
 			console.error('Failed to fetch data', error);
 		} finally {
 			set({ loading: false });

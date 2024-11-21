@@ -2,6 +2,7 @@ import { Model } from '@/shared/types/model';
 
 export interface FiltersState {
 	loading: boolean;
+	fetchError: boolean;
 	modelId: string | null;
 	year: number | null;
 	yearsList: number[];

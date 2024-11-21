@@ -4,21 +4,26 @@ import { getYearList } from '@/shared/lib/date';
 import { Param } from '../types/static';
 
 export const getAllStaticParams = async () => {
-	const years = getYearList(INITIAL_YEAR, new Date().getFullYear());
-	const modelsResponse = await getVehicleModels();
+	try {
+		const years = getYearList(INITIAL_YEAR, new Date().getFullYear());
+		const modelsResponse = await getVehicleModels();
 
-	const result: Param[] = [];
+		const result: Param[] = [];
 
-	for (const year of years) {
-		for (const model of modelsResponse.Results) {
-			const params = {
-				year: year.toString(),
-				modelId: model.MakeId.toString(),
-			};
+		for (const year of years) {
+			for (const model of modelsResponse.Results) {
+				const params = {
+					year: year.toString(),
+					modelId: model.MakeId.toString(),
+				};
 
-			result.push(params);
+				result.push(params);
+			}
 		}
-	}
 
-	return result;
+		return result;
+	} catch (error) {
+		console.log('Error in getAllStaticParams', error);
+		return [];
+	}
 };

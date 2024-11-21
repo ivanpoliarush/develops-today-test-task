@@ -8,7 +8,6 @@ const generateStaticParams = async () => {
 };
 
 const VehicleResultsPageWrapper = async ({ params }: { params: Param }) => {
-	console.log(params);
 	return <VehicleResultsPage year={+params.year} modelId={+params.modelId} />;
 };
 
