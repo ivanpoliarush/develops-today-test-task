@@ -18,13 +18,15 @@ export const useFilters = create<FiltersState>((set) => ({
 				length: currentYear - INITIAL_YEAR + 1,
 			}).map((_, index) => INITIAL_YEAR + index);
 
+			set({ yearsList });
+
 			const modelsResponse = await getVehicleModels();
 			const modelsList = modelsResponse.Results.map<Model>((model) => ({
 				id: model.MakeId,
 				name: model.MakeName,
 			}));
 
-			set({ yearsList, modelsList });
+			set({ modelsList });
 		} catch (error) {
 			console.error('Failed to fetch data', error);
 		} finally {

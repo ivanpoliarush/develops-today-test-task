@@ -2,6 +2,7 @@
 
 import { Button } from '@/shared/ui/button/button';
 import { Select } from '@/shared/ui/select/select';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { useFilters } from '../../hooks/use-filters';
 
@@ -34,16 +35,17 @@ export const Filters = () => {
 				onSelect={(value) => setModelId(value as string | null)}
 			/>
 			<Select
-				disabled={loading}
 				options={yearsList.map((year) => ({
 					label: year.toString(),
 					value: year,
 				}))}
 				selected={year}
-				defaultLabel={loading ? 'Loading...' : 'Year'}
+				defaultLabel="Year"
 				onSelect={(value) => setYear(value as number | null)}
 			/>
-			<Button label="Next" />
+			<Link href="/results">
+				<Button label="Next" disabled={!modelId || !year} />
+			</Link>
 		</div>
 	);
 };
