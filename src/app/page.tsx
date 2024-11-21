@@ -1,5 +1,11 @@
+import { Filters } from '@/features/filters/ui/main/main';
+
 const HomePage = () => {
-	return <main></main>;
+	return (
+		<main>
+			<Filters />
+		</main>
+	);
 };
 
 export default HomePage;
