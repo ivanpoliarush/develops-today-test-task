@@ -1,3 +1,4 @@
+import { getYearList } from '@/shared/lib/date';
 import { Model } from '@/shared/types/model';
 import { create } from 'zustand';
 import { getVehicleModels } from '../api/vehicle';
@@ -14,10 +15,10 @@ export const useFilters = create<FiltersState>((set) => ({
 
 	fetchData: async () => {
 		try {
-			const currentYear = new Date().getFullYear();
-			const yearsList = Array.from({
-				length: currentYear - INITIAL_YEAR + 1,
-			}).map((_, index) => INITIAL_YEAR + index);
+			const yearsList = getYearList(
+				INITIAL_YEAR,
+				new Date().getFullYear()
+			);
 
 			set({ yearsList });
 
