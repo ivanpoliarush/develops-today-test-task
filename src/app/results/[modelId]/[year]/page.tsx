@@ -8,10 +8,16 @@ const generateStaticParams = async () => {
 	return result;
 };
 
-const VehicleResultsPageWrapper = async ({ params }: { params: Param }) => {
+const VehicleResultsPageWrapper = async ({
+	params,
+}: {
+	params: Promise<Param>;
+}) => {
+	const { year, modelId } = await params;
+
 	return (
 		<Suspense>
-			<VehicleResultsPage year={+params.year} modelId={+params.modelId} />
+			<VehicleResultsPage year={+year} modelId={+modelId} />
 		</Suspense>
 	);
 };
