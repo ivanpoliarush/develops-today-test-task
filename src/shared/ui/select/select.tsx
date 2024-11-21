@@ -72,6 +72,7 @@ export const Select = ({
 				<input
 					value={search}
 					placeholder="Search..."
+					onClick={(event) => event.stopPropagation()}
 					className="w-[220px] text-xs focus:outline-none"
 					onChange={(event) => setSearch(event.target.value)}
 				/>
