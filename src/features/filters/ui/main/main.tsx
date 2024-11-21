@@ -43,7 +43,7 @@ export const Filters = () => {
 				defaultLabel="Year"
 				onSelect={(value) => setYear(value as number | null)}
 			/>
-			<Link href="/results">
+			<Link href={`/results/${modelId}/${year}`}>
 				<Button label="Next" disabled={!modelId || !year} />
 			</Link>
 		</div>
