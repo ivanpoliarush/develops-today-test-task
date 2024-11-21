@@ -46,7 +46,7 @@ export const Select = ({
 			ref={elementRef}
 			onClick={handleOpen}
 			className={clsx(
-				'flex items-center justify-between cursor-pointer w-40 px-[16px] py-[12px] rounded-[22px] transition-all relative',
+				'flex items-center justify-between cursor-pointer w-[100%] px-[16px] py-[12px] rounded-[22px] transition-all relative h-11 sm:w-40',
 				{
 					'bg-[#323232]': !open,
 					'bg-[#00BD90]': open,
@@ -63,7 +63,7 @@ export const Select = ({
 			/>
 			<div
 				className={clsx(
-					'absolute w-[250px] rounded-[12px] bg-[#fff] top-[120%] left-0 transition-all overflow-hidden flex flex-col items-center',
+					'absolute w-[100%] rounded-[12px] bg-[#fff] top-[120%] left-0 transition-all overflow-hidden flex flex-col items-center z-10 sm:w-[250px]',
 					{
 						'h-[300px] px-[8px] py-[16px]': open,
 						'h-0 p-0': !open,
@@ -73,11 +73,11 @@ export const Select = ({
 					value={search}
 					placeholder="Search..."
 					onClick={(event) => event.stopPropagation()}
-					className="w-[220px] text-xs focus:outline-none"
+					className="w-[calc(100%-30px)] text-xs focus:outline-none sm:w-[220px]"
 					onChange={(event) => setSearch(event.target.value)}
 				/>
 				{displayOptions.length ? (
-					<div className="flex flex-col mt-[12px] w-[234px] overflow-scroll">
+					<div className="flex flex-col mt-[12px] w-[calc(100%-16px)] overflow-scroll sm:w-[234px]">
 						{displayOptions.map((option) => (
 							<div
 								key={option.value}

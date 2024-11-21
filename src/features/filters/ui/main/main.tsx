@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/shared/ui/button/button';
 import { Select } from '@/shared/ui/select/select';
 import { useEffect } from 'react';
 import { useFilters } from '../../hooks/use-filters';
@@ -21,7 +22,7 @@ export const Filters = () => {
 	}, []);
 
 	return (
-		<div className="flex">
+		<div className="flex h-[100vh] px-[20px] gap-[24px] items-center justify-center flex-col sm:flex-row sm:px-0">
 			<Select
 				disabled={loading}
 				options={modelsList.map((model) => ({
@@ -42,6 +43,7 @@ export const Filters = () => {
 				defaultLabel={loading ? 'Loading...' : 'Year'}
 				onSelect={(value) => setYear(value as number | null)}
 			/>
+			<Button label="Next" />
 		</div>
 	);
 };
